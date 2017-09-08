@@ -20,8 +20,10 @@ class EjectorThread(object):
         try:
             if self._target:
                 self._target(*self._args, **self._kwargs)
+                print('1')
             else:
                 self.run()
+                print('2')
         except:
             # crash_logger.exception('UNHANDLED EXCEPTION in thread: {0}'.format(self._thread.name))
             raise "Unable to create a thread"

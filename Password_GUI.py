@@ -18,16 +18,13 @@ def EnterButton():
         else:
             print('Password Correct')
             AuthSuccess = 1
+            window.quit()
 
-# def Exitbutton():
-#     pass
-
-def sum():
-    return 4
 
 window = Tk()
 user_text = StringVar()
 password_text = StringVar()
+
 
 def makeGUI():
 
@@ -50,10 +47,13 @@ def makeGUI():
     b1 = Button(window, text="Enter", width=12, command=EnterButton)
     b1.grid(row=3, column=2)
 
-    b2 = Button(window, text="Exit", width=12, command=window.destroy)
+    b2 = Button(window, text="Exit", width=12, command=window.quit)
     b2.grid(row=3, column=3)
 
     window.mainloop()
 
+# def GUImainloop():
 
-#makeGUI()
+
+
+
