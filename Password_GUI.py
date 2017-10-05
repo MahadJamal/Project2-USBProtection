@@ -27,7 +27,7 @@ password_text = StringVar()
 
 
 def makeGUI():
-
+    #put exception handler in case the object is destroyed so that it is re-made.
     window.wm_title("Authentication required")
 
     l1 = Label(window, text="User Name")

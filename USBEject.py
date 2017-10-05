@@ -38,7 +38,8 @@ class USBEJECT():
                     file = open(i + ':/')
                 except Exception as e:
                     if (e.errno == 13):
-                        USBEJECT.USBDisk.append(i)
+                        USBEJECT.USBDisk.append(i)  #Appended everytime. We only need once. Also it only detects one USB at a time
+                        print(USBEJECT.USBDisk)
                         USBEJECT.makeGUI = 1
                         if (Password_GUI.AuthSuccess):
                             self.isININ = False
@@ -52,13 +53,14 @@ class USBEJECT():
                             break
             sleep(1)
 
-    def USBEJECT_ejector(self, USBDisk, isININ):
+    def USBEJECT_ejector(self):
         print('Ejector Started')
-        if (isININ):
-            tmpFile = open('tmp.ps1', 'w')
-            tmpFile.write('$driveEject = New-Object -comObject Shell.Application\n')
-            tmpFile.write('$driveEject.Namespace(17).ParseName("' + USBDisk[0] + ':").InvokeVerb("Eject")')
-            tmpFile.close()
-            process = subprocess.Popen(['powershell.exe', '-ExecutionPolicy', 'Unrestricted', './tmp.ps1'])
-            process.communicate()
+        while(True):
+            if (self.isININ):
+                tmpFile = open('tmp.ps1', 'w')
+                tmpFile.write('$driveEject = New-Object -comObject Shell.Application\n')
+                tmpFile.write('$driveEject.Namespace(17).ParseName("' + USBEJECT.USBDisk[0] + ':").InvokeVerb("Eject")')
+                tmpFile.close()
+                process = subprocess.Popen(['powershell.exe', '-ExecutionPolicy', 'Unrestricted', './tmp.ps1'])
+                process.communicate()
 

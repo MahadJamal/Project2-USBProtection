@@ -1,4 +1,4 @@
-'''username and password to be stored in database'''
+'''username and password to be stored in database. Explain the method to store the username and password in database'''
 import sqlite3
 
 def connect():
